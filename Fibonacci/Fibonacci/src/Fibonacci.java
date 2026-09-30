@@ -13,7 +13,7 @@ public class Fibonacci {
     public int fibonacci(int n) {
         switch (n) {
             case 0:
-                return 0;
+                return 0; //Changed from 1 to 0
             case 1:
                 return 1;
             default:

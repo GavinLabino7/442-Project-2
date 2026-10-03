@@ -97,11 +97,12 @@ public class VendingMachineTest {
         vendingMachine.addItem(item1, "A"); 
         assertEquals(item1, vendingMachine.removeItem("A")); 
  
-        assertThrows( VendingMachineException.class, () -> vendingMachine.removeItem("A") ); 
+        assertThrows(VendingMachineException.class, () -> vendingMachine.removeItem("A")); 
     }
 
     @Test
     void testReturnChange() {
-
+        vendingMachine.insertMoney(5.00); 
+        assertEquals(5.00, vendingMachine.returnChange(), 0.01); 
     }
 }

@@ -50,6 +50,21 @@ public class VendingMachineTest {
         assertEquals(1.50, item1.getPrice(), 0.01);
     }
 
+    @ParameterizedTest 
+    @CsvSource ({
+        "A", "B", "C", "D"
+    }) 
+    void testSlotIndex(String Code) {
+        vendingMachine.addItem(item1, Code);
+        assertEquals(item1, vendingMachine.getItem(Code));
+    }
+
+    @Test
+    void testSlotIndexNull() {
+        vendingMachine.addItem(item1, "A");
+        assertThrows(VendingMachineException.class, () -> vendingMachine.getItem(null));
+    }
+
     @Test
     void testAddItem() {
         vendingMachine.addItem(item1, "A");

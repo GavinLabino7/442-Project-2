@@ -60,6 +60,9 @@ public class VendingMachineTest {
 
     @Test
     void testGetItem() {
+        vendingMachine.addItem(item1, "A");
+        assertEquals(item1, vendingMachine.getItem("A"));
+        assertThrows( VendingMachineException.class, () -> vendingMachine.getItem("E") );
 
     }
 

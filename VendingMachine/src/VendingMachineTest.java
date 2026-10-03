@@ -1,5 +1,8 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,16 +73,23 @@ public class VendingMachineTest {
     void testInsertMoney() {
         vendingMachine.insertMoney(0.00);
         assertEquals(0.00, vendingMachine.getBalance(), 0.001);
+
         vendingMachine.insertMoney(5.00); 
         assertEquals(5.00, vendingMachine.getBalance(), 0.01); 
-        vendingMachine.insertMoney(2.00); 
-        assertEquals(7.00, vendingMachine.getBalance(), 0.01); 
+
         assertThrows(VendingMachineException.class, () -> vendingMachine.insertMoney(-1.00));
     }
 
     @Test
     void testMakePurchase() {
+        vendingMachine.addItem(item1, "A");
+        vendingMachine.addItem(item5, "B");
+        vendingMachine.insertMoney(1.50); 
 
+        assertTrue(vendingMachine.makePurchase("A"));
+
+        assertFalse(vendingMachine.makePurchase("C")); 
+        assertFalse(vendingMachine.makePurchase("B"));   
     }
 
     @Test

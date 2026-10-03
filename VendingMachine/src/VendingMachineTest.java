@@ -62,13 +62,19 @@ public class VendingMachineTest {
     void testGetItem() {
         vendingMachine.addItem(item1, "A");
         assertEquals(item1, vendingMachine.getItem("A"));
-        assertThrows( VendingMachineException.class, () -> vendingMachine.getItem("E") );
+        assertThrows(VendingMachineException.class, () -> vendingMachine.getItem("E") );
 
     }
 
     @Test
     void testInsertMoney() {
-
+        vendingMachine.insertMoney(0.00);
+        assertEquals(0.00, vendingMachine.getBalance(), 0.001);
+        vendingMachine.insertMoney(5.00); 
+        assertEquals(5.00, vendingMachine.getBalance(), 0.01); 
+        vendingMachine.insertMoney(2.00); 
+        assertEquals(7.00, vendingMachine.getBalance(), 0.01); 
+        assertThrows(VendingMachineException.class, () -> vendingMachine.insertMoney(-1.00));
     }
 
     @Test

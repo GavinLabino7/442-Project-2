@@ -94,7 +94,10 @@ public class VendingMachineTest {
 
     @Test
     void testRemoveItem() {
-
+        vendingMachine.addItem(item1, "A"); 
+        assertEquals(item1, vendingMachine.removeItem("A")); 
+ 
+        assertThrows( VendingMachineException.class, () -> vendingMachine.removeItem("A") ); 
     }
 
     @Test
